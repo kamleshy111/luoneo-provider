@@ -418,13 +418,14 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                 child: Column(
                   children: [
                     const SizedBox(height: 40),
-                    const CustomSvgPicture(
-                      svgImage: AppAssets.loginLogo,
-                      width: 100,
-                      height: 108,
-                      boxFit: BoxFit.cover,
-                    ),
-                    const SizedBox(height: 40),
+                    Image.asset(AppAssets.logoblack, height: 108, width: 180),
+                    // const CustomSvgPicture(
+                    //   svgImage: AppAssets.loginLogo,
+                    //   width: 100,
+                    //   height: 108,
+                    //   boxFit: BoxFit.cover,
+                    // ),
+                    const SizedBox(height: 20),
                     _buildHeader(),
                     _buildSubHeading(),
                     _buildOtpField(context),

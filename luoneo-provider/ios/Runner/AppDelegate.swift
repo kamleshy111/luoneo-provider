@@ -11,7 +11,7 @@ import GoogleMaps
    if #available(iOS 10.0, *) {
      UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
    }
-   GMSServices.provideAPIKey("PLACE_YOUR_IOS_MAP_API_KEY_HERE")
+   GMSServices.provideAPIKey("AIzaSyAWl3-IYc6HS5ImLUWDAwZfS41g01QEj_o")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

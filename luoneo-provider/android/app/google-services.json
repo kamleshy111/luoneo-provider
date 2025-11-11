@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "764261856613",
+    "firebase_url": "https://luoneo-b55b0-default-rtdb.firebaseio.com",
+    "project_id": "luoneo-b55b0",
+    "storage_bucket": "luoneo-b55b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764261856613:android:8a57956d2e4ab95b0a9d8c",
+        "android_client_info": {
+          "package_name": "com.luoneo.bg.provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764261856613-u44r5pt5jo45tuatan43iktod54libjg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luoneo.bg.provider",
+            "certificate_hash": "48898f673624cc55aceb2b956257ba67a7fbc296"
+          }
+        },
+        {
+          "client_id": "764261856613-ud4gvfqfr3g2ra8br9egvubpecsl0vpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXZfaUyjsQvw3b22mlnmioAy9UDcXFEwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764261856613-ud4gvfqfr3g2ra8br9egvubpecsl0vpm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "764261856613-0cug12gao1vbf7rfo74d5c647mfsp3bn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.luoneo.bg.user"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764261856613:android:8644c4ea32128d9d0a9d8c",
+        "android_client_info": {
+          "package_name": "com.luoneo.bg.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764261856613-200urff85hcn9qmm7uv58ps7nfu86gnh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luoneo.bg.user",
+            "certificate_hash": "48898f673624cc55aceb2b956257ba67a7fbc296"
+          }
+        },
+        {
+          "client_id": "764261856613-ud4gvfqfr3g2ra8br9egvubpecsl0vpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXZfaUyjsQvw3b22mlnmioAy9UDcXFEwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764261856613-ud4gvfqfr3g2ra8br9egvubpecsl0vpm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "764261856613-0cug12gao1vbf7rfo74d5c647mfsp3bn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.luoneo.bg.user"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

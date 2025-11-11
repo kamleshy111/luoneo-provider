@@ -220,13 +220,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -294,13 +290,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -403,12 +395,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 89C47N4UTZ;
+				DEVELOPMENT_TEAM = 848YYD83DL;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 4.3.0;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "eDemand Provider";
+				INFOPLIST_KEY_CFBundleDisplayName = "Luoneo Provider";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -416,7 +408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 4.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wrteam.edemand.provider;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luoneo.bg.provider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -544,12 +536,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 89C47N4UTZ;
+				DEVELOPMENT_TEAM = 848YYD83DL;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 4.3.0;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "eDemand Provider";
+				INFOPLIST_KEY_CFBundleDisplayName = "Luoneo Provider";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -557,7 +549,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 4.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wrteam.edemand.provider;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luoneo.bg.provider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -579,12 +571,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 89C47N4UTZ;
+				DEVELOPMENT_TEAM = 848YYD83DL;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 4.3.0;
 				FLUTTER_BUILD_NUMBER = 1;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "eDemand Provider";
+				INFOPLIST_KEY_CFBundleDisplayName = "Luoneo Provider";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -592,7 +584,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 4.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wrteam.edemand.provider;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luoneo.bg.provider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";

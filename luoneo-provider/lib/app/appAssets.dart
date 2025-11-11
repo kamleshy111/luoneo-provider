@@ -5,6 +5,8 @@ abstract class AppAssets {
   // Branding assets
 
   static const String loginLogo = "$_brandingAssetsPath/loginlogo.svg";
+  static const String logoblack = "$_brandingAssetsPath/logoblack.png";
+  static const String logowhite = "$_brandingAssetsPath/logowhite.png";
   static const String splashLogo = "$_brandingAssetsPath/splashLogo.svg";
   static const String wrteamLogo = "$_brandingAssetsPath/wrteam_logo.svg";
   static const String noImageAvailable =
@@ -74,6 +76,7 @@ abstract class AppAssets {
   static const String noInternet = "$_svgs/noInternet.svg";
   static const String notebookSvgRepo = "$_svgs/notebook-svgrepo-com.svg";
   static const String notification = "$_svgs/notification.svg";
+  // static const String placeholder = "$_svgs/placeholder.svg";
   static const String placeholder = "$_svgs/placeholder.svg";
   static const String portugueseFlag = "$_svgs/portugese_flag.svg";
   static const String registration = "$_svgs/registration.svg";

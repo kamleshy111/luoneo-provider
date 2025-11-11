@@ -270,7 +270,7 @@ class ProviderRegistrationState extends State<ProviderRegistration> {
 
                         final Map<String, dynamic> parameter = {
                           'username': userNmController.text.trim(),
-                          'company_name':companyNmController.text.trim(),
+                          'company_name': companyNmController.text.trim(),
                           'password': passwordController.text.trim(),
                           'password_confirm': passwordController.text.trim(),
                           'email': emailController.text.trim(),

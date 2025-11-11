@@ -100,10 +100,12 @@ class GeneralSettings {
     address = (json['translated_address']?.toString() ?? '').isNotEmpty
         ? json['translated_address'].toString()
         : (json['address']?.toString() ?? '');
-    shortDescription = (json['translated_short_description']?.toString() ?? '').isNotEmpty
+    shortDescription =
+        (json['translated_short_description']?.toString() ?? '').isNotEmpty
         ? json['translated_short_description'].toString()
         : (json['short_description']?.toString() ?? '');
-    copyrightDetails = (json['translated_copyright_details']?.toString() ?? '').isNotEmpty
+    copyrightDetails =
+        (json['translated_copyright_details']?.toString() ?? '').isNotEmpty
         ? json['translated_copyright_details'].toString()
         : (json['copyright_details']?.toString() ?? '');
     supportHours = json['support_hours']?.toString() ?? '';
@@ -120,12 +122,30 @@ class GeneralSettings {
         ? true
         : false;
     allowPreBookingChat = json['allow_pre_booking_chat'] == '1' ? true : false;
-    passportVerificationStatus = (json['passport_verification_status']?.toString() ?? '0') == "1" ? true : false;
-    passportRequiredStatus = (json['passport_required_status']?.toString() ?? '0') == "1" ? true : false;
-    nationalIdVerificationStatus = (json['national_id_verification_status']?.toString() ?? '0') == "1" ? true : false;
-    nationalIdRequiredStatus = (json['national_id_required_status']?.toString() ?? '0') == "1" ? true : false;
-    addressIdVerificationStatus = (json['address_id_verification_status']?.toString() ?? '0') == "1" ? true : false;
-    addressIdRequiredStatus = (json['address_id_required_status']?.toString() ?? '0') == "1" ? true : false;
+    passportVerificationStatus =
+        (json['passport_verification_status']?.toString() ?? '0') == "1"
+        ? true
+        : false;
+    passportRequiredStatus =
+        (json['passport_required_status']?.toString() ?? '0') == "1"
+        ? true
+        : false;
+    nationalIdVerificationStatus =
+        (json['national_id_verification_status']?.toString() ?? '0') == "1"
+        ? true
+        : false;
+    nationalIdRequiredStatus =
+        (json['national_id_required_status']?.toString() ?? '0') == "1"
+        ? true
+        : false;
+    addressIdVerificationStatus =
+        (json['address_id_verification_status']?.toString() ?? '0') == "1"
+        ? true
+        : false;
+    addressIdRequiredStatus =
+        (json['address_id_required_status']?.toString() ?? '0') == "1"
+        ? true
+        : false;
   }
 
   String? supportEmail;

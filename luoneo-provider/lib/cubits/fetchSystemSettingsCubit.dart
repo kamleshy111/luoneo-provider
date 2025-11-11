@@ -98,14 +98,28 @@ class FetchSystemSettingsCubit extends Cubit<FetchSystemSettingsState> {
           generalSettings: GeneralSettings.fromJson(
             result['general_settings'] ?? {},
           ),
-          privacyPolicy: result['privacy_policy']['privacy_policy'] ?? '',
-          aboutUs: result['about_us']['about_us'] ?? '',
-          availableAmount: result['balance'] ?? '',
-          isDemoModeEnable: result['demo_mode'] ?? '0',
-          isAcceptingCustomJob: result['is_accepting_custom_jobs'] ?? "0",
-          termsAndConditions:
-              result['terms_conditions']['terms_conditions'] ?? '',
-          contactUs: result['contact_us']['contact_us'] ?? '',
+          privacyPolicy: _extractContent(
+            result['privacy_policy'],
+            'privacy_policy',
+          ),
+          aboutUs: _extractContent(result['about_us'], 'about_us'),
+          availableAmount: (result['balance'] ?? '').toString(),
+          isDemoModeEnable: (result['demo_mode'] ?? '0').toString(),
+          isAcceptingCustomJob: (result['is_accepting_custom_jobs'] ?? "0")
+              .toString(),
+          termsAndConditions: _extractContent(
+            result['terms_conditions'],
+            'terms_conditions',
+          ),
+          contactUs: _extractContent(result['contact_us'], 'contact_us'),
+          //  privacyPolicy: result['privacy_policy']['privacy_policy'] ?? '',
+          // aboutUs: result['about_us']['about_us'] ?? '',
+          // availableAmount: result['balance'] ?? '',
+          // isDemoModeEnable: result['demo_mode'] ?? '0',
+          // isAcceptingCustomJob: result['is_accepting_custom_jobs'] ?? "0",
+          // termsAndConditions:
+          //     result['terms_conditions']['terms_conditions'] ?? '',
+          // contactUs: result['contact_us']['contact_us'] ?? '',
           subscriptionInformation: result["subscription_information"] != null
               ? SubscriptionInformation.fromJson(
                   Map.from(result["subscription_information"] ?? {}),
@@ -115,7 +129,8 @@ class FetchSystemSettingsCubit extends Cubit<FetchSystemSettingsState> {
             result["payment_gateways_settings"] ?? {},
           ),
           appSetting: AppSetting.fromJson(result["app_settings"] ?? {}),
-          payableCommission: result['payable_commision'] ?? '',
+          // payableCommission: result['payable_commision'] ?? '',
+          payableCommission: (result['payable_commision'] ?? '').toString(),
         ),
       );
     } catch (e) {
@@ -281,4 +296,29 @@ class FetchSystemSettingsCubit extends Cubit<FetchSystemSettingsState> {
     }
     return [];
   }
+}
+
+String _extractContent(dynamic source, String key) {
+  if (source == null) {
+    return '';
+  }
+  if (source is String) {
+    return source;
+  }
+  if (source is Map<String, dynamic>) {
+    final dynamic value = source[key];
+    return value?.toString() ?? '';
+  }
+  if (source is Map) {
+    final dynamic value = source[key];
+    return value?.toString() ?? '';
+  }
+  if (source is List && source.isNotEmpty) {
+    final dynamic first = source.first;
+    if (first is Map || first is Map<String, dynamic>) {
+      return _extractContent(first, key);
+    }
+    return first?.toString() ?? '';
+  }
+  return source.toString();
 }

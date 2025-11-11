@@ -28,7 +28,7 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 android {
-    namespace "wrteam.edemand.provider"
+    namespace "com.luoneo.bg.provider"
     compileSdkVersion 36
     // ndkVersion = "26.1.10909125"
     ndkVersion flutter.ndkVersion
@@ -47,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "wrteam.edemand.provider"
+        applicationId "com.luoneo.bg.provider"
         minSdkVersion 24
         targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()

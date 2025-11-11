@@ -1,6 +1,6 @@
-const String appName = 'eDemand Provider';
+const String appName = 'Luoneo Provider';
 
-const String baseUrl = 'PLACE_YOUR_BASE_URL_HERE'; //demo
+const String baseUrl = 'https://adm.luoneo.bg/partner/api/v1/'; //demo
 
 const bool isDemoMode = true;
 

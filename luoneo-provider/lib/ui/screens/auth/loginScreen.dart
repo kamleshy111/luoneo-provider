@@ -122,14 +122,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 40),
-                      const CustomSvgPicture(
-                        svgImage: AppAssets.loginLogo,
-                        width: 100,
-                        height: 108,
-                        boxFit: BoxFit.cover,
-                      ),
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 60),
+                      Image.asset(AppAssets.logoblack, height: 108, width: 180),
+                      // const CustomSvgPicture(
+                      //   svgImage: AppAssets.loginLogo,
+                      //   width: 100,
+                      //   height: 108,
+                      //   boxFit: BoxFit.cover,
+                      // ),
+                      // const SizedBox(height: 10),
                       Text(
                         'welcome-provider'.translate(context: context),
                         style: TextStyle(
@@ -181,10 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   children: [
                                     CustomInkWellContainer(
                                       onTap: () {
-                                        if (allowOnlySingleCountry ||
-                                            (state is CountryCodeFetchSuccess &&
-                                                state.temporaryCountryList != null &&
-                                                state.temporaryCountryList!.length == 1)) {
+                                        if (allowOnlySingleCountry) {
                                           return;
                                         }
                                         Navigator.pushNamed(
@@ -243,9 +241,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                           const SizedBox(width: 10),
                                           if (!allowOnlySingleCountry &&
-                                              !(state is CountryCodeFetchSuccess &&
-                                                  state.temporaryCountryList != null &&
-                                                  state.temporaryCountryList!.length == 1))
+                                              !(state
+                                                      is CountryCodeFetchSuccess &&
+                                                  state.temporaryCountryList !=
+                                                      null &&
+                                                  state
+                                                          .temporaryCountryList!
+                                                          .length ==
+                                                      1))
                                             CustomSvgPicture(
                                               svgImage: AppAssets.spDown,
                                               height: 5,

@@ -262,18 +262,37 @@ class SplashScreenState extends State<SplashScreen> {
                       horizontal: 15,
                       vertical: 10,
                     ),
-                    child: const Center(
-                      child: CustomSvgPicture(svgImage: AppAssets.splashLogo),
+                    child: Center(
+                      child: Image.asset(
+                        AppAssets.logoblack,
+                        height: 240,
+                        width: 220,
+                      ),
+                      // child: CustomSvgPicture(svgImage: AppAssets.splashLogo),
                     ),
                   ),
-                  if (isDemoMode)
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 50),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: CustomSvgPicture(svgImage: AppAssets.wrteamLogo),
+
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomText(
+                        "Изпълнители",
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        maxLines: 1,
+                        color: context.colorScheme.blackColor,
                       ),
                     ),
+                  ),
+                  // if (isDemoMode)
+                  //   const Padding(
+                  //     padding: EdgeInsets.only(bottom: 50),
+                  //     child: Align(
+                  //       alignment: Alignment.bottomCenter,
+                  //       child: CustomSvgPicture(svgImage: AppAssets.wrteamLogo),
+                  //     ),
+                  //   ),
                 ],
               ),
             ),

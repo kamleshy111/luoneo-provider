@@ -1371,16 +1371,12 @@ class RegistrationFormState extends State<RegistrationForm> {
                         if (form.validate()) {
                           setState(() {
                             currentIndex = index + 1;
-                            // Reset to default language when navigating to description page
-                            _resetToDefaultLanguageIfNeeded(index + 1);
                           });
                           scrollController.jumpTo(0);
                         }
                       } else {
                         setState(() {
                           currentIndex = index + 1;
-                          // Reset to default language when navigating to description page
-                          _resetToDefaultLanguageIfNeeded(index + 1);
                         });
                         scrollController.jumpTo(0);
                       }

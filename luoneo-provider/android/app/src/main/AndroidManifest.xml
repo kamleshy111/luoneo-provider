@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="wrteam.edemand.provider">
+    package="com.luoneo.bg.provider">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -16,7 +16,7 @@
         android:extractNativeLibs="true">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.luoneo.bg.provider.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -64,7 +64,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="PLACE_YOUR_ANDROID_MAP_API_KEY_HERE"/>
+            android:value="AIzaSyBXZfaUyjsQvw3b22mlnmioAy9UDcXFEwA"/>
 
     </application>
 </manifest>

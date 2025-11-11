@@ -236,14 +236,15 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
               children: [
                 Column(
                   children: [
-                    const SizedBox(height: 40),
-                    const CustomSvgPicture(
-                      svgImage: AppAssets.loginLogo,
-                      width: 100,
-                      height: 108,
-                      boxFit: BoxFit.cover,
-                    ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 60),
+                    Image.asset(AppAssets.logoblack, height: 108, width: 180),
+                    // const CustomSvgPicture(
+                    //   svgImage: AppAssets.loginLogo,
+                    //   width: 100,
+                    //   height: 108,
+                    //   boxFit: BoxFit.cover,
+                    // ),
+                    // const SizedBox(height: 40),
                     _buildHeading(),
                     const SizedBox(height: 8),
                     _buildSubHeading(),
