@@ -50,21 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
+    apiKey: 'AIzaSyCrXkUfY-9WtwhsShHiGNkwANTW8DzWmTw',
+    appId: '1:158761436949:android:edf32c6b99bc5797de8b1c',
+    messagingSenderId: '158761436949',
+    projectId: 'luoneo-bg',
+    storageBucket: 'luoneo-bg.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
-    androidClientId: '',
-    iosClientId: '',
-    iosBundleId: '',
+    apiKey: 'AIzaSyBaZsnAknERrvxVB9JcA8wtJ2AnZZnq49w',
+    appId: '1:158761436949:ios:346467fde24e3e7fde8b1c',
+    messagingSenderId: '158761436949',
+    projectId: 'luoneo-bg',
+    storageBucket: 'luoneo-bg.firebasestorage.app',
+    androidClientId:
+        '158761436949-7garh65lridi7ujmmdsuap05k7h9angv.apps.googleusercontent.com',
+    iosClientId:
+        '158761436949-ubjqu7fvvt3hkficstncb9nbtklubhqr.apps.googleusercontent.com',
+    iosBundleId: 'com.luoneo.bg.provider',
   );
 }

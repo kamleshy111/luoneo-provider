@@ -107,6 +107,9 @@ class ManageServiceState extends State<ManageService> {
   late TextEditingController qtyAllowedTaskController = TextEditingController(
     text: widget.service?.maxQuantityAllowed,
   );
+  late TextEditingController finalPriceController = TextEditingController(
+    text: widget.service?.finalPrice,
+  );
 
   FocusNode priceFocus = FocusNode();
   FocusNode discountPriceFocus = FocusNode();
@@ -1047,7 +1050,7 @@ class ManageServiceState extends State<ManageService> {
               internalPadding: 0,
               borderThickness: 0,
               stepBorderRadius: 0,
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.only(left: 30, right: 40),
               showStepBorder: false,
               activeStep: currIndex - 1,
               lineStyle: LineStyle(
@@ -1269,6 +1272,7 @@ class ManageServiceState extends State<ManageService> {
           formKey2: formKey2,
           priceController: priceController,
           discountPriceController: discountPriceController,
+          finalPriceController: finalPriceController,
           memReqTaskController: memReqTaskController,
           durationTaskController: durationTaskController,
           qtyAllowedTaskController: qtyAllowedTaskController,
@@ -1722,7 +1726,9 @@ class ManageServiceState extends State<ManageService> {
           if (!_isDefaultLanguageLongDescriptionFilled()) {
             UiUtils.showMessage(
               context,
-              'pleaseAddLongDescriptionInDefaultLanguage'.translate(context: context),
+              'pleaseAddLongDescriptionInDefaultLanguage'.translate(
+                context: context,
+              ),
               ToastificationType.warning,
             );
             return;
@@ -1751,6 +1757,7 @@ class ManageServiceState extends State<ManageService> {
             slug: surviceSlugController.text,
             description: serviceDescrController.text,
             price: priceController.text,
+            finalPrice: finalPriceController.text,
             members: memReqTaskController.text,
             maxQty: qtyAllowedTaskController.text,
             duration: int.parse(durationTaskController.text),
@@ -1789,7 +1796,9 @@ class ManageServiceState extends State<ManageService> {
             // Use new nested translated_fields structure only
             translatedFields: translatedFields,
           );
-
+          print("finalPriceController ${finalPriceController.text}");
+          print("discounted price ${discountPriceController.text}");
+          print("discounted price2 ${int.parse(discountPriceController.text)}");
           if (imagePicker.pickedFile != null ||
               widget.service?.imageOfTheService != null ||
               pickedServiceImage != '') {

@@ -7,6 +7,7 @@ class CreateServiceModel {
     this.serviceId,
     this.description,
     this.price,
+    this.finalPrice,
     this.duration,
     this.maxQty,
     this.image,
@@ -48,6 +49,7 @@ class CreateServiceModel {
   String? title;
   String? description;
   String? price;
+  String? finalPrice;
   int? duration;
   String? maxQty;
   String? tags;
@@ -115,7 +117,7 @@ class CreateServiceModel {
     data['tax_id'] = taxId;
     data['status'] = status;
     data['slug'] = slug;
-
+    data['final_price'] = finalPrice;
     if (long_description != null) {
       data['long_description'] = long_description;
     }
@@ -201,7 +203,9 @@ class CreateServiceModel {
       });
     }
     // Only ensure default language exists if no titles at all
-    if (titleTranslations.isEmpty && defaultTitle != null && defaultTitle.isNotEmpty) {
+    if (titleTranslations.isEmpty &&
+        defaultTitle != null &&
+        defaultTitle.isNotEmpty) {
       titleTranslations[defaultLanguageCode ?? 'en'] = defaultTitle;
     }
     // Always include title field (API requirement) even if empty
@@ -220,7 +224,9 @@ class CreateServiceModel {
       });
     }
     // Only ensure default language exists if no descriptions at all
-    if (descriptionTranslations.isEmpty && defaultDescription != null && defaultDescription.isNotEmpty) {
+    if (descriptionTranslations.isEmpty &&
+        defaultDescription != null &&
+        defaultDescription.isNotEmpty) {
       descriptionTranslations[defaultLanguageCode ?? 'en'] = defaultDescription;
     }
     // Always include description field (API requirement) even if empty
@@ -239,7 +245,9 @@ class CreateServiceModel {
       });
     }
     // Only ensure default language exists if no tags at all
-    if (tagTranslations.isEmpty && defaultTags != null && defaultTags.isNotEmpty) {
+    if (tagTranslations.isEmpty &&
+        defaultTags != null &&
+        defaultTags.isNotEmpty) {
       tagTranslations[defaultLanguageCode ?? 'en'] = defaultTags;
     }
     // Always include tags field (API requirement) even if empty
@@ -296,10 +304,7 @@ class CreateServiceModel {
           final question = faq['question'];
           final answer = faq['answer'];
           if (question?.isNotEmpty == true && answer?.isNotEmpty == true) {
-            validFaqs.add({
-              'question': question!,
-              'answer': answer!,
-            });
+            validFaqs.add({'question': question!, 'answer': answer!});
           }
         }
         if (validFaqs.isNotEmpty) {

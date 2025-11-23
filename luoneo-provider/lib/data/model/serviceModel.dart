@@ -46,8 +46,11 @@ class ServiceModel {
   String? seoTitle;
   String? seoDescription;
   String? seoKeywords;
+  String? finalPrice;
   String? seoSchemaMarkup;
   String? seoOgImage;
+  String? priceWithTax;
+  String? originalPriceWithTax;
 
   ServiceModel({
     this.id,
@@ -95,6 +98,9 @@ class ServiceModel {
     this.seoKeywords,
     this.seoSchemaMarkup,
     this.seoOgImage,
+    this.finalPrice,
+    this.priceWithTax,
+    this.originalPriceWithTax,
   });
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -112,7 +118,9 @@ class ServiceModel {
     tags = json['tags'].toString();
     imageOfTheService = json['image_of_the_service'].toString();
     price = json['price']?.toString() ?? '0';
+    finalPrice = json["final_price"]?.toString() ?? '0';
     discountedPrice = json['discounted_price']?.toString() ?? '0';
+
     numberOfMembersRequired =
         json['number_of_members_required']?.toString() ?? '1';
     duration = json['duration']?.toString() ?? '0';
@@ -149,11 +157,10 @@ class ServiceModel {
               : []
         : [];
 
-
     longDescription = json["long_description"]?.toString() ?? '';
 
     // Store complete translated_fields structure
-    translatedFields = json['translated_fields'] != null 
+    translatedFields = json['translated_fields'] != null
         ? Map<String, dynamic>.from(json['translated_fields'])
         : null;
 
@@ -163,6 +170,8 @@ class ServiceModel {
     seoKeywords = json['seo_keywords']?.toString() ?? '';
     seoSchemaMarkup = json['seo_schema_markup']?.toString() ?? '';
     seoOgImage = json['seo_og_image']?.toString() ?? '';
+    priceWithTax = json["price_with_tax"]?.toString() ?? '';
+    originalPriceWithTax = json["original_price_with_tax"]?.toString() ?? '';
   }
 
   void copyFrom(ServiceModel other) {
@@ -181,6 +190,7 @@ class ServiceModel {
     imageOfTheService = other.imageOfTheService;
     price = other.price;
     discountedPrice = other.discountedPrice;
+    finalPrice = other.finalPrice;
     numberOfMembersRequired = other.numberOfMembersRequired;
     duration = other.duration;
     rating = other.rating;
@@ -208,8 +218,9 @@ class ServiceModel {
     longDescription = other.longDescription;
     faqs = other.faqs != null ? List.from(other.faqs!) : null;
     // Copy translated fields
-    translatedFields = other.translatedFields != null 
-        ? Map<String, dynamic>.from(other.translatedFields!) : null;
+    translatedFields = other.translatedFields != null
+        ? Map<String, dynamic>.from(other.translatedFields!)
+        : null;
     // SEO fields
     seoTitle = other.seoTitle;
     seoDescription = other.seoDescription;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:edemand_partner/app/generalImports.dart';
 import 'package:open_file/open_file.dart';
 
@@ -32,6 +33,7 @@ class Form2 extends StatelessWidget {
     required this.selectedFiles,
     required this.previouslyAddedFiles,
     required this.onPreviousFileDeleted,
+    required this.finalPriceController,
   });
 
   final GlobalKey<FormState> formKey2;
@@ -40,6 +42,7 @@ class Form2 extends StatelessWidget {
   final TextEditingController memReqTaskController;
   final TextEditingController durationTaskController;
   final TextEditingController qtyAllowedTaskController;
+  final TextEditingController finalPriceController;
   final FocusNode priceFocus;
   final FocusNode discountPriceFocus;
   final FocusNode memReqTaskFocus;
@@ -51,6 +54,7 @@ class Form2 extends StatelessWidget {
   final VoidCallback onTaxSelect;
   final PickImage imagePicker;
   final String pickedServiceImage;
+
   final Function(ImageSource) onServiceImagePick;
 
   final ServiceModel? service;
@@ -630,6 +634,9 @@ class Form2 extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           setPriceAndDiscountedPrice(),
+          const SizedBox(height: 8),
+          finalPriceWidget(),
+          const SizedBox(height: 15),
           CustomTextFormField(
             bottomPadding: 10,
             labelText: 'membersForTaskLbl'.translate(context: context),
@@ -709,58 +716,205 @@ class Form2 extends StatelessWidget {
     return Row(
       children: [
         Flexible(
-          child: CustomTextFormField(
-            bottomPadding: 10,
-            labelText: 'priceLbl'.translate(context: context),
-            allowOnlySingleDecimalPoint: true,
-            controller: priceController,
-            currentFocusNode: priceFocus,
-            prefix: Padding(
-              padding: const EdgeInsetsDirectional.all(15.0),
-              child: CustomText(
-                context.read<FetchSystemSettingsCubit>().SystemCurrency,
-                fontSize: 14.0,
-                color: Theme.of(context).colorScheme.blackColor,
-              ),
-            ),
-            nextFocusNode: discountPriceFocus,
-            validator: (String? value) {
-              return Validator.nullCheck(context, value);
+          child: ValueListenableBuilder<TextEditingValue>(
+            valueListenable: priceController,
+            builder: (context, priceValue, child) {
+              // When price is filled and discount price is empty, set discount price to "0"
+              if (priceValue.text.trim().isNotEmpty &&
+                  discountPriceController.text.trim().isEmpty) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (discountPriceController.text.trim().isEmpty) {
+                    discountPriceController.text = '0';
+                  }
+                });
+              }
+              return CustomTextFormField(
+                bottomPadding: 10,
+                labelText: 'priceLbl'.translate(context: context),
+                allowOnlySingleDecimalPoint: true,
+                controller: priceController,
+                currentFocusNode: priceFocus,
+                prefix: Padding(
+                  padding: const EdgeInsetsDirectional.all(15.0),
+                  child: CustomText(
+                    context.read<FetchSystemSettingsCubit>().SystemCurrency,
+                    fontSize: 14.0,
+                    color: Theme.of(context).colorScheme.blackColor,
+                  ),
+                ),
+                nextFocusNode: discountPriceFocus,
+                validator: (String? value) {
+                  return Validator.nullCheck(context, value);
+                },
+                textInputType: TextInputType.number,
+              );
             },
-            textInputType: TextInputType.number,
           ),
         ),
         const SizedBox(width: 20),
         Flexible(
-          child: CustomTextFormField(
-            bottomPadding: 10,
-            labelText: 'discountPriceLbl'.translate(context: context),
-            controller: discountPriceController,
-            currentFocusNode: discountPriceFocus,
-            allowOnlySingleDecimalPoint: true,
-            prefix: Padding(
-              padding: const EdgeInsetsDirectional.all(15.0),
-              child: CustomText(
-                context.read<FetchSystemSettingsCubit>().SystemCurrency,
-                fontSize: 14.0,
-                color: Theme.of(context).colorScheme.blackColor,
-              ),
-            ),
-            validator: (String? value) {
-              if (value != null && value.isNotEmpty) {
-                if (num.parse(value) > num.parse(priceController.text)) {
-                  return 'discountIsMoreThanPrice'.translate(context: context);
-                } else if (num.parse(value) ==
-                    num.parse(priceController.text)) {
-                  return 'discountPriceCanNotBeEqualToPrice'.translate(
-                    context: context,
-                  );
+          child: ValueListenableBuilder<TextEditingValue>(
+            valueListenable: discountPriceController,
+            builder: (context, discountValue, child) {
+              // Convert negative values to positive (Math.abs equivalent)
+              String currentText = discountValue.text;
+              if (currentText.isNotEmpty && currentText != '-') {
+                try {
+                  double value = double.parse(currentText);
+                  if (value < 0) {
+                    String absValue = value.abs().toString();
+                    // Only update if different to avoid infinite loop
+                    if (discountPriceController.text != absValue) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (discountPriceController.text != absValue) {
+                          discountPriceController.text = absValue;
+                        }
+                      });
+                    }
+                  }
+                } catch (e) {
+                  // Ignore parse errors
                 }
               }
-              return Validator.nullCheck(context, value);
+
+              // Enforce integer-only values (no decimals)
+              String value = discountPriceController.text;
+              final regex = RegExp(r'^\d+$');
+
+              if ((!regex.hasMatch(value) && value.isNotEmpty) ||
+                  value.contains('.') ||
+                  value.contains('-')) {
+                value = value.replaceAll(RegExp(r'[^0-9]'), '');
+
+                if (discountPriceController.text != value) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (discountPriceController.text != value) {
+                      discountPriceController.text = value;
+                    }
+                  });
+                }
+              }
+
+              return CustomTextFormField(
+                bottomPadding: 10,
+                labelText: 'discountPriceLbl'.translate(context: context),
+                controller: discountPriceController,
+                currentFocusNode: discountPriceFocus,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'\d')),
+                ],
+                prefix: Padding(
+                  padding: const EdgeInsetsDirectional.all(15.0),
+                  child: CustomText(
+                    context.read<FetchSystemSettingsCubit>().SystemCurrency,
+                    fontSize: 14.0,
+                    color: Theme.of(context).colorScheme.blackColor,
+                  ),
+                ),
+                validator: (String? value) {
+                  if (value != null && value.isNotEmpty) {
+                    if (num.parse(value) > num.parse(priceController.text)) {
+                      return 'discountIsMoreThanPrice'.translate(
+                        context: context,
+                      );
+                    } else if (num.parse(value) ==
+                        num.parse(priceController.text)) {
+                      return 'discountPriceCanNotBeEqualToPrice'.translate(
+                        context: context,
+                      );
+                    }
+                  }
+                  return Validator.nullCheck(context, value);
+                },
+                textInputType: TextInputType.number,
+              );
             },
-            textInputType: TextInputType.number,
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget finalPriceWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ValueListenableBuilder<TextEditingValue>(
+          valueListenable: priceController,
+          builder: (context, priceValue, child) {
+            return ValueListenableBuilder<TextEditingValue>(
+              valueListenable: discountPriceController,
+              builder: (context, discountValue, child) {
+                double finalPrice = 0.0;
+                final String discountText = discountPriceController.text.trim();
+                final double? discountValue = discountText.isEmpty
+                    ? null
+                    : double.tryParse(discountText);
+
+                // Treat empty / invalid / zero-like discount values as non-existent
+                String priceText;
+                if (discountValue == null || discountValue == 0) {
+                  priceText = priceController.text.trim();
+                } else {
+                  priceText = discountValue.toString();
+                }
+
+                final double? basePrice = priceText.isEmpty
+                    ? null
+                    : double.tryParse(priceText);
+
+                if (basePrice != null && basePrice > 0) {
+                  finalPrice = basePrice / 0.85;
+                }
+
+                final finalPriceText = finalPrice > 0
+                    ? finalPrice.toStringAsFixed(2)
+                    : '0.00';
+
+                if (finalPriceController.text != finalPriceText) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (finalPriceController.text != finalPriceText) {
+                      finalPriceController.text = finalPriceText;
+                    }
+                  });
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomTextFormField(
+                      bottomPadding: 0,
+                      labelText: 'Final Price'.translate(context: context),
+                      controller: finalPriceController,
+                      isReadOnly: true,
+                      prefix: Padding(
+                        padding: const EdgeInsetsDirectional.all(15.0),
+                        child: CustomText(
+                          context
+                              .read<FetchSystemSettingsCubit>()
+                              .SystemCurrency,
+                          fontSize: 14.0,
+                          color: Theme.of(context).colorScheme.blackColor,
+                        ),
+                      ),
+                      hintText: finalPriceText.isEmpty
+                          ? 'finalPriceHint'.translate(context: context)
+                          : finalPriceText,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: CustomText(
+                        'Final Price = (Discounted Price or Price) ÷\n0.85 (automatically calculated)',
+                        fontSize: 12.0,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.blackColor.withAlpha(150),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
         ),
       ],
     );

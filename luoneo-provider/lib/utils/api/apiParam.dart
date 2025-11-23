@@ -80,5 +80,4 @@ class ApiParam {
   static const String receiverType = 'receiver_type';
   static const String notificationId = "notification_id";
   static const String deleteNotification = "delete_notification";
-
 }

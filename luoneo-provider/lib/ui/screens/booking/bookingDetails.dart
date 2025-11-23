@@ -290,7 +290,9 @@ class BookingDetailsState extends State<BookingDetails> {
                     e['title'] == widget.bookingsModel.status,
               )
               .toList()[0]['value'];
-          final Map<String, String> originalStatus = filters.where((Map<String, String> element) {
+          final Map<String, String> originalStatus = filters.where((
+            Map<String, String> element,
+          ) {
             return element['value'] == originalStatusValue;
           }).toList()[0];
 
@@ -422,12 +424,13 @@ class BookingDetailsState extends State<BookingDetails> {
         }
         return CustomContainer(
           color: Theme.of(context).colorScheme.secondaryColor,
-          child: Padding( padding: EdgeInsetsDirectional.only(
-            start: 15,
-            end: 15,
-            top: 10,
-            bottom: 10 + MediaQuery.of(context).padding.bottom,
-          ),
+          child: Padding(
+            padding: EdgeInsetsDirectional.only(
+              start: 15,
+              end: 15,
+              top: 10,
+              bottom: 10 + MediaQuery.of(context).padding.bottom,
+            ),
 
             child: SizedBox(
               width: MediaQuery.sizeOf(context).width / 2,

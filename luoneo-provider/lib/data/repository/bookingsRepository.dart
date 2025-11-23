@@ -13,6 +13,7 @@ class BookingsRepository {
         url: ApiUrl.getBookings,
         useAuthToken: true,
       );
+      debugPrint('fetchBookingDetails response: $response');
 
       if (response['error']) {
         return {"bookingDetails": <BookingsModel>[], "totalBookings": 0};
@@ -25,6 +26,7 @@ class BookingsRepository {
         "totalBookings": int.parse(response['total']),
       };
     } catch (e) {
+      debugPrint('fetchBookingDetails error: $e');
       throw ApiException(e.toString());
     }
   }
@@ -43,11 +45,12 @@ class BookingsRepository {
           ApiParam.offset: offset,
           ApiParam.status: status,
           ApiParam.order: 'DESC',
-          ApiParam.customRequestOrders: customRequestOrder??'',
+          ApiParam.customRequestOrders: customRequestOrder ?? '',
           ApiParam.fetchBothBookings: fetchBothBookings,
         },
         useAuthToken: true,
       );
+      debugPrint('fetchBooking response: $response');
       List<BookingsModel> modelList;
       if (response['data'].isEmpty) {
         modelList = [];
@@ -62,6 +65,7 @@ class BookingsRepository {
         modelList: modelList,
       );
     } catch (e) {
+      debugPrint('fetchBooking error: $e');
       throw ApiException(e.toString());
     }
   }
@@ -123,6 +127,8 @@ class BookingsRepository {
         parameter: parameters,
         useAuthToken: true,
       );
+      debugPrint('updateBookingStatus parameters: $parameters');
+      debugPrint('updateBookingStatus response: $response');
 
       return {
         'error': response['error'],
@@ -130,6 +136,7 @@ class BookingsRepository {
         'data': response['data'],
       };
     } catch (e) {
+      debugPrint('updateBookingStatus error: $e');
       throw ApiException(e.toString());
     }
   }
@@ -147,6 +154,7 @@ class BookingsRepository {
         },
         useAuthToken: true,
       );
+      debugPrint('fetchSingleBookingById response: $response');
 
       if (response['error'] || response['data'].isEmpty) {
         return null;
@@ -155,6 +163,7 @@ class BookingsRepository {
       // Return the first booking from the response
       return BookingsModel.fromJson(Map.from(response['data']['data'][0]));
     } catch (e) {
+      debugPrint('fetchSingleBookingById error: $e');
       throw ApiException(e.toString());
     }
   }
@@ -166,6 +175,7 @@ class BookingsRepository {
         parameter: {ApiParam.date: date},
         useAuthToken: true,
       );
+      debugPrint('getAllTimeSlots response: $response');
 
       final List<TimeSlotModel> timeSlotList =
           (response['data']['all_slots'] as List).map((element) {
@@ -180,6 +190,7 @@ class BookingsRepository {
         ),
       );
     } catch (e) {
+      debugPrint('getAllTimeSlots error: $e');
       rethrow;
     }
   }

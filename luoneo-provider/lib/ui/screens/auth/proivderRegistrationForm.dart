@@ -1325,6 +1325,7 @@ class RegistrationFormState extends State<RegistrationForm> {
                   borderThickness: 0,
                   stepBorderRadius: 0,
                   showStepBorder: false,
+                  padding: EdgeInsets.only(left: 30, right: 30),
                   activeStep: currentIndex - 1,
                   lineStyle: LineStyle(
                     lineSpace: 0,

@@ -68,7 +68,7 @@ class ServiceContainer extends StatelessWidget {
                             ),
                             const SizedBox(width: 5),
                             CustomText(
-                             service.translatedStatus.toString(),
+                              service.translatedStatus.toString(),
                               //status.label.translate(context: context),
                               fontSize: 14,
                               color: status.getTextColor(context),
@@ -79,7 +79,12 @@ class ServiceContainer extends StatelessWidget {
                       : const SizedBox.shrink(),
                   const SizedBox(height: 5),
                   CustomText(
-                    service.getTranslatedTitle(HiveRepository.getCurrentLanguage()?.languageCode ?? 'en') ?? service.title ?? '',
+                    service.getTranslatedTitle(
+                          HiveRepository.getCurrentLanguage()?.languageCode ??
+                              'en',
+                        ) ??
+                        service.title ??
+                        '',
                     fontSize: 16,
                     color: context.colorScheme.blackColor,
                     fontWeight: FontWeight.w600,
@@ -173,7 +178,7 @@ class ServiceContainer extends StatelessWidget {
                     children: [
                       if (service.discountedPrice != '0') ...[
                         CustomText(
-                          (service.discountedPrice ?? "0")
+                          (service.priceWithTax ?? "0")
                               .replaceAll(',', '')
                               .toString()
                               .priceFormat(context),
@@ -182,7 +187,7 @@ class ServiceContainer extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                         CustomText(
-                          (service.price ?? "0")
+                          (service.originalPriceWithTax ?? "0")
                               .replaceAll(',', '')
                               .toString()
                               .priceFormat(context),
@@ -195,7 +200,7 @@ class ServiceContainer extends StatelessWidget {
                         ),
                       ] else ...[
                         CustomText(
-                          (service.price ?? "0")
+                          (service.priceWithTax ?? "0")
                               .replaceAll(',', '')
                               .toString()
                               .priceFormat(context),

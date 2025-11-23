@@ -1,11 +1,17 @@
 import 'package:edemand_partner/app/generalImports.dart';
 import 'package:edemand_partner/app/registerBlocks.dart';
-
+import 'package:edemand_partner/utils/Notification/notificationService.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // IMPORTANT: Register background message handler BEFORE Firebase initialization
+  FirebaseMessaging.onBackgroundMessage(onBackgroundMessageHandler);
+  debugPrint('✅ Background message handler registered BEFORE Firebase init');
+
   //locked in portrait mode only
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
